@@ -1,0 +1,32 @@
+﻿@page "/ending-credit"
+
+@inject NavigationManager NavigationManager
+
+<div id="wrapper">
+    <div id="content">
+        <div class="card text-center">
+            <h1>Thank you for <b>saving the world</b>🌍!</h1>
+
+            <h5>
+                This was my journey.<br />
+                Thank you for being with me.<br />
+                See you next Christmas!
+            </h5>
+
+            <div class="card-img">
+                <img src="image/red-crab-looking.jpg" style="width:500px;" />
+            </div>
+
+            <div class="card-body">
+                <button class="btn btn-dark" @onclick="GoToWebsite">made by leehuhlee</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@code{
+    void GoToWebsite() {
+        NavigationManager.NavigateTo("https://leehuhlee.github.io/");
+    }
+}

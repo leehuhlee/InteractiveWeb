@@ -1,0 +1,26 @@
+﻿@page "/ending-burning"
+
+@inject NavigationManager NavigationManager
+
+<div id="wrapper">
+    <div id="content">
+        <div class="card text-center">
+            <h1>I'm burning🔥!!!</h1>
+
+            <div class="card-img">
+                <img src="image/burning-crab.jpg" style="width:500px;" />
+            </div>
+
+            <div class="card-body">
+                <button class="btn btn-dark" @onclick="GoToSun">Go To The Sun</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@code{
+    void GoToSun() {
+        NavigationManager.NavigateTo("/sun");
+    }
+}

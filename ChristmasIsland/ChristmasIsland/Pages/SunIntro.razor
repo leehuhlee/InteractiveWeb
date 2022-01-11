@@ -1,0 +1,36 @@
+﻿@page "/sun/intro"
+
+@inject NavigationManager NavigationManager
+
+<div id="wrapper">
+    <div id="content">
+        <div class="card text-center">
+            <h1><b>Hide From The Sun</b></h1>
+
+            <h5>
+                We should hide from the Sun because of <b>dehydration</b>.
+            </h5>
+
+            <ul class="text-left">
+                <li>Press any key to start</li>
+                <li>Press any key to move</li>
+                <li>Should move at night🌜</li>
+            </ul>
+
+            <div class="card-img">
+                <img src="image/hiding-crab.jpg" style="width:500px;" />
+            </div>
+
+            <div class="card-body">
+                <button class="btn btn-dark" @onclick="GoToSun">Start</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@code {
+    void GoToSun() {
+        NavigationManager.NavigateTo("/sun");
+    }
+}

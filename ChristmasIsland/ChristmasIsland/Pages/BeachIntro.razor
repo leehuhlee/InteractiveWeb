@@ -1,0 +1,41 @@
+﻿@page "/beach/intro"
+
+@inject NavigationManager NavigationManager
+
+<div id="wrapper">
+    <div id="content">
+        <div class="card text-center">
+            <h1><b>Meet family</b></h1>
+
+            <h5>
+                Finally, I'm in the beach.<br />
+                Our migration's goal is our babies😘!<br />
+                Please, find my babies.
+            </h5>
+
+            <ul class="text-left">
+                <li>Press any key to start</li>
+                <li>Press ↑ key to move up</li>
+                <li>Press → key to move right</li>
+                <li>Press ↓ key to move down</li>
+                <li>Press ← key to move left</li>
+                <li>Find 10 babies</li>
+            </ul>
+
+            <div class="card-img">
+                <img src="image/crab-in-the-beach.jpg" style="width:500px;" />
+            </div>
+
+            <div class="card-body">
+                <button class="btn btn-dark" @onclick="GoToBeach">Start</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@code {
+    void GoToBeach() {
+        NavigationManager.NavigateTo("/beach");
+    }
+}

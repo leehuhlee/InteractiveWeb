@@ -1,0 +1,26 @@
+﻿@page "/ending-roadkill"
+
+@inject NavigationManager NavigationManager
+
+<div id="wrapper">
+    <div id="content">
+        <div class="card text-center">
+            <h1>D'oh!!!</h1>
+
+            <div class="card-img">
+                <img src="image/roadkill_crab.jpg" style="width:500px;" />
+            </div>
+
+            <div class="card-body">
+                <button class="btn btn-dark" @onclick="GoToRoad">Go To Road</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@code{
+    void GoToRoad() {
+        NavigationManager.NavigateTo("/road");
+    }
+}

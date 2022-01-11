@@ -1,0 +1,25 @@
+﻿@page "/"
+
+@inject NavigationManager NavigationManager 
+
+<div id="wrapper">
+    <div id="content">
+        <div class="card text-center">
+            <h1>Welcome to Christmas Island!</h1>
+
+            <div class="card-img">
+                <img src="image/christmas_island_map.jpg" style="width:500px;" />
+            </div>
+
+            <div class="card-body">
+                <button class="btn btn-dark" @onclick="GoToEntrance">Enter to Christmas Island</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code{
+    void GoToEntrance() {
+        NavigationManager.NavigateTo("/entrance");
+    }
+}

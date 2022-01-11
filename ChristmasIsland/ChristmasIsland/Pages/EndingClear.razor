@@ -1,0 +1,31 @@
+﻿@page "/ending-clear"
+
+@inject NavigationManager NavigationManager
+
+<div id="wrapper">
+    <div id="content">
+        <div class="card text-center">
+            <h1>Finally, we successed✔!</h1>
+
+            <h5>
+                Thank you for your help.<br />
+                Now, we can go back to home🛤.
+            </h5>
+
+            <div class="card-img">
+                <img src="image/putting-cap.jpg" style="width:500px;" />
+            </div>
+
+            <div class="card-body">
+                <button class="btn btn-dark" @onclick="GoToContinue">Do you need help to go back?</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@code{
+    void GoToContinue() {
+        NavigationManager.NavigateTo("/continue");
+    }
+}

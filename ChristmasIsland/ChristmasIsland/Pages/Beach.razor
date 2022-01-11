@@ -1,0 +1,32 @@
+﻿@page "/beach"
+
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JSRuntime
+
+<div class="beach">
+    <div Id="game-board"></div>
+</div>
+
+<style>
+    * {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    body {
+        min-height: 100vh;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        background-color: black;
+    }
+</style>
+
+@code {
+    protected override void OnAfterRender(bool firstRender) {
+        if (firstRender)
+            JSRuntime.InvokeVoidAsync("beach");
+    }
+}

@@ -1,0 +1,26 @@
+﻿@page "/ending-missing"
+
+@inject NavigationManager NavigationManager
+
+<div id="wrapper">
+    <div id="content">
+        <div class="card text-center">
+            <h1>Where is my family😶?</h1>
+
+            <div class="card-img">
+                <img src="image/alone-baby-crab.jpg" style="width:500px;" />
+            </div>
+
+            <div class="card-body">
+                <button class="btn btn-dark" @onclick="GoToBeach">Go To Beach</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@code{
+    void GoToBeach() {
+        NavigationManager.NavigateTo("/beach");
+    }
+}

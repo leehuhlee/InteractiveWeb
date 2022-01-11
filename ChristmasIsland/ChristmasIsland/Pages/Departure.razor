@@ -1,0 +1,35 @@
+﻿@page "/departure"
+
+@inject NavigationManager NavigationManager
+
+@using Datas
+
+<div id="wrapper">
+    <div id="content">
+        <div class="card text-center">
+            <h1>Merry Christmas🎄, @User.Name!</h1>
+
+            <h5>On Christmas, we need to migration. Would you help us?</h5>
+
+            <div class="card-img">
+                <img src="image/asking_crab.jpg" style="width:500px;" />
+            </div>
+
+            <div class="card-body">
+                <button class="btn btn-dark" @onclick="GoToMap">Why Not?</button>
+                <button class="btn btn-dark" @onclick="GoToEndingNoStart">Sorry, I can't</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@code {
+    void GoToMap() {
+        NavigationManager.NavigateTo("/map");
+    }
+
+    void GoToEndingNoStart() {
+        NavigationManager.NavigateTo("/ending-no-start");
+    }
+}

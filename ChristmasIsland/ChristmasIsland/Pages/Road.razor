@@ -1,0 +1,60 @@
+﻿@page "/road"
+
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JSRuntime
+
+<div id="wrapper">
+    <div id="content">
+        <div class="card text-center">
+            <h1>This is the road <span style="color:red;"><b>humans made</b></span>.</h1>
+
+            <div class="road">
+                <div class="header">
+                    Score: <strong class="score">0</strong>
+                </div>
+                <div class="grid">
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    protected override void OnAfterRender(bool firstRender) {
+        if(firstRender)
+            JSRuntime.InvokeVoidAsync("road");
+    }
+}

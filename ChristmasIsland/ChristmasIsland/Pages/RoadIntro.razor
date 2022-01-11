@@ -1,0 +1,38 @@
+﻿@page "/road/intro"
+
+@inject NavigationManager NavigationManager
+
+<div id="wrapper">
+    <div id="content">
+        <div class="card text-center">
+            <h1><b>Crossing Road🚧</b></h1>
+
+            <h5>
+                Humans made their road and a lot of crabs is dead on here.<br />
+                Please be careful, I don't wanna be a roadkill.
+            </h5>
+
+            <ul class="text-left">
+                <li>Press any key to start</li>
+                <li>Press ← key to move left</li>
+                <li>Press → key to move right</li>
+                <li>Pass 10 cars🚙</li>
+            </ul>
+
+            <div class="card-img">
+                <img src="image/crossing-road-crab.jpg" style="width:500px;" />
+            </div>
+
+            <div class="card-body">
+                <button class="btn btn-dark" @onclick="GoToRoad">Start</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@code {
+    void GoToRoad() {
+        NavigationManager.NavigateTo("/road");
+    }
+}

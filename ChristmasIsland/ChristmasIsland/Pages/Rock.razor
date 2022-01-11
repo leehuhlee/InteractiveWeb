@@ -1,0 +1,30 @@
+﻿@page "/rock"
+
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JSRuntime
+
+<div id="wrapper">
+    <div id="content">
+        <div class="card text-center">
+            <div class="header">
+                <font size="5" id="score">Score</font> / <font size="5" id="heart">Life</font>
+            </div>
+
+            <div class="rock">
+                <div id="canvas"></div>
+                <hr id="line" align="left">
+                <img src="image/pixel_crab.png" style="width:100px;" />
+                <br />
+                <input id="text" placeholder="text" autofocus>
+                <button id="auth" class="btn btn-dark">Enter</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    protected override void OnAfterRender(bool firstRender) {
+        if (firstRender)
+            JSRuntime.InvokeVoidAsync("rock");
+    }
+}

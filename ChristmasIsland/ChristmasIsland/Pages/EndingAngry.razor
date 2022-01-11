@@ -1,0 +1,26 @@
+﻿@page "/ending-angry"
+
+@inject NavigationManager NavigationManager
+
+<div id="wrapper">
+    <div id="content">
+        <div class="card text-center">
+            <h1>Are you kidding me🤬?!</h1>
+
+            <div class="card-img">
+                <img src="image/angry-crab-with-rock.jpg" style="width:500px;" />
+            </div>
+
+            <div class="card-body">
+                <button class="btn btn-dark" @onclick="GoToRock">Go To Rock</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@code{
+    void GoToRock() {
+        NavigationManager.NavigateTo("/rock");
+    }
+}

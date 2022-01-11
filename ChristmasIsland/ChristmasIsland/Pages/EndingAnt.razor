@@ -1,0 +1,26 @@
+﻿@page "/ending-ant"
+
+@inject NavigationManager NavigationManager
+
+<div id="wrapper">
+    <div id="content">
+        <div class="card text-center">
+            <h1>Yum! Yum!</h1>
+
+            <div class="card-img">
+                <img src="image/ant.jpg" style="width:500px;" />
+            </div>
+
+            <div class="card-body">
+                <button class="btn btn-dark" @onclick="GoToForest">Go To Forest</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@code{
+    void GoToForest() {
+        NavigationManager.NavigateTo("/forest");
+    }
+}

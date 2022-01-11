@@ -1,0 +1,28 @@
+﻿@page "/ending-no-start"
+
+@inject NavigationManager NavigationManager
+
+@using Datas
+
+<div id="wrapper">
+    <div id="content">
+        <div class="card text-center">
+            <h1>Please, Leave me alone!</h1>
+
+            <div class="card-img">
+                <img src="image/human_grab_crab.jpg" style="width:500px;" />
+            </div>
+
+            <div class="card-body">
+                <button class="btn btn-dark" @onclick="GoToIndex">Go To Home</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@code{
+    void GoToIndex() {
+        NavigationManager.NavigateTo("/");
+    }
+}

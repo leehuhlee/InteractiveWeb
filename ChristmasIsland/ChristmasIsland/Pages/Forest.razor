@@ -1,0 +1,28 @@
+﻿@page "/forest"
+
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JSRuntime
+
+<div id="wrapper">
+    <div id="content">
+        <div class="card text-center">
+            <h1>This is our <span style="color:green;"><b>Forest</b></span>.</h1>
+
+            <div class="header">
+                Score: <strong class="score">0</strong>
+            </div>
+
+            <div class="forest">
+                <div Id="crab"></div>
+                <div id="ant"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    protected override void OnAfterRender(bool firstRender) {
+        if (firstRender)
+            JSRuntime.InvokeVoidAsync("forest");
+    }
+}

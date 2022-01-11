@@ -1,0 +1,22 @@
+﻿@page "/sun"
+
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JSRuntime
+
+<div class="sun">
+    <p class="text">Loading...</p>
+</div>
+
+<style>
+    * {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+</style>
+
+@code {
+    protected override void OnAfterRender(bool firstRender) {
+        if (firstRender)
+            JSRuntime.InvokeVoidAsync("sun");
+    }
+}

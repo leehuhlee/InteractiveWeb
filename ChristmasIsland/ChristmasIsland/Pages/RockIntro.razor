@@ -1,0 +1,36 @@
+﻿@page "/rock/intro"
+
+@inject NavigationManager NavigationManager
+
+<div id="wrapper">
+    <div id="content">
+        <div class="card text-center">
+            <h1><b>Watch Out!!</b></h1>
+
+            <h5>
+                Stones are dropping!<br />
+                You should break stones for us💥
+            </h5>
+
+            <ul class="text-left">
+                <li>Press enter to remove the word stone</li>
+                <li>Break 5 stones</li>
+            </ul>
+
+            <div class="card-img">
+                <img src="image/climing-crab.jpg" style="width:500px;" />
+            </div>
+
+            <div class="card-body">
+                <button class="btn btn-dark" @onclick="GoToRock">Start</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@code {
+    void GoToRock() {
+        NavigationManager.NavigateTo("/rock");
+    }
+}

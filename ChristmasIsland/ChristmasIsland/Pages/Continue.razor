@@ -1,0 +1,32 @@
+﻿@page "/continue"
+
+@inject NavigationManager NavigationManager
+
+<div id="wrapper">
+    <div id="content">
+        <div class="card text-center">
+            <h1>No, Thanks!</h1>
+
+            <h5>
+                I can go back with my friends.<br />
+                But, there is a lot of animails that needs your help.<br />
+                Would you please to help them?
+            </h5>
+
+            <div class="card-img">
+                <img src="image/crab-see-world.jpg" style="width:500px;" />
+            </div>
+
+            <div class="card-body">
+                <button class="btn btn-dark" @onclick="GoToEndingCredit">Yes, I'm looking forward to.</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@code {
+    void GoToEndingCredit() {
+        NavigationManager.NavigateTo("/ending-credit");
+    }
+}

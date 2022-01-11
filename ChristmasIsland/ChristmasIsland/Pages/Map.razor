@@ -1,0 +1,26 @@
+﻿@page "/map"
+
+@inject NavigationManager NavigationManager
+
+<div id="wrapper">
+    <div id="content">
+        <div class="card text-center">
+            <h1>This is our migration map🗺.</h1>
+
+            <div class="card-img">
+                <img src="image/migration_route.jpg" style="width:500px;" />
+            </div>
+
+            <div class="card-body">
+                <button class="btn btn-dark" @onclick="GoToForestIntro">Let's Go Forest</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@code {
+    void GoToForestIntro() {
+        NavigationManager.NavigateTo("/forest/intro");
+    }
+}
