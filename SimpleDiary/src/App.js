@@ -1,8 +1,9 @@
-import { useMemo, useEffect, useRef, useState } from 'react';
+import { useMemo, useEffect, useRef, useState, useCallback } from 'react';
 import './App.css';
 import DiaryEditor from './DiaryEditor';
 import DiaryList from './DiaryList';
 import LifeCycle from './LifeCycle';
+import OptimizeTest from './OptimizeTest';
 
 function App() {
 
@@ -32,17 +33,20 @@ function App() {
     getData();
   }, []);
 
-  const onCreate = (author, content, emotion) => {
-    const created_date = new Date().getTime();
-    const newItem = {
-      author,
-      content,
-      emotion,
-      created_date,
-      id: dataId.current++
-    };
-    setData([newItem, ...data]);
-  };
+  const onCreate = useCallback((
+    author, content, emotion) => {
+      const created_date = new Date().getTime();
+      const newItem = {
+        author,
+        content,
+        emotion,
+        created_date,
+        id: dataId.current++
+      };
+      setData((data) => [newItem, ...data]);
+    },
+    []
+  );
 
   const onDelete = (targetId) => {
     const newDiaryList = data.filter((it) => it.id !== targetId);
@@ -59,8 +63,6 @@ function App() {
 
   const getDiaryAnalysis = useMemo(
     () => {
-      console.log("Analysis Diary");
-
       const goodCount = data.filter((it) => it.emotion >= 3).length;
       const badCount = data.length - goodCount;
       const goodRatio = (goodCount / data.length) * 100;
