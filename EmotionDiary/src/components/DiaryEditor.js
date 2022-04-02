@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { DiaryDispatchContext } from "../App"
 import { getStringDate } from "../util/date";
@@ -14,10 +14,10 @@ const DiaryEditor = ({isEdit, originData}) => {
     const [emotion, setEmotion] = useState(3);
     const [date, setDate] = useState(getStringDate(new Date()));
 
-    const {onCreate, onEdit} = useContext(DiaryDispatchContext);
-    const handleClickEmote = (emotion) => {
+    const {onCreate, onEdit, onRemove} = useContext(DiaryDispatchContext);
+    const handleClickEmote = useCallback((emotion) => {
         setEmotion(emotion);
-    };
+    }, []);
     const navigate = useNavigate();
 
     const handleSubmit = () =>{
@@ -26,7 +26,8 @@ const DiaryEditor = ({isEdit, originData}) => {
             return;
         }
 
-        if(window.confirm(isEdit ? "Do you want to edit this diary?" : "Do you want to write new diary?")){
+        if(window.confirm(isEdit 
+            ? "Do you want to edit this diary?" : "Do you want to write new diary?")){
             if(!isEdit){
                 onCreate(date, content, emotion);
             }
@@ -35,6 +36,13 @@ const DiaryEditor = ({isEdit, originData}) => {
             }
         }
         navigate('/', {replace: true});
+    };
+
+    const handleRemove = () => {
+        if(window.confirm("Do you want to remove?")){
+            onRemove(originData.id);
+            navigate('/', {replace: true});
+        }
     };
 
     useEffect(() => {
@@ -49,7 +57,20 @@ const DiaryEditor = ({isEdit, originData}) => {
         <div className="DiaryEditor">
             <MyHeader 
                 headText={isEdit ? "Edit Diary" : "Write New Diary"} 
-                leftChild={<MyButton text={"< Back"} onClick={() => navigate(-1)}/>}
+                leftChild={
+                    <MyButton 
+                        text={"< Back"} 
+                        onClick={() => navigate(-1)}
+                    />
+                }
+                rightChild={
+                    isEdit && (
+                    <MyButton  
+                        text={"Remove"} 
+                        type={"negative"} 
+                        onClick={handleRemove}
+                    />)
+                }
             />
             <div>
                 <section>
@@ -81,7 +102,8 @@ const DiaryEditor = ({isEdit, originData}) => {
                             placeholder="How was it today?" 
                             ref={contentRef} 
                             value={content} 
-                            onChange={(e) => setContent(e.target.value)}/>
+                            onChange={(e) => setContent(e.target.value)}
+                        />
                     </div> 
                 </section>
                 <section>

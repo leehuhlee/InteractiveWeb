@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { DiaryStateContext } from "../App";
+
 import DiaryEditor from "../components/DiaryEditor";
 
 const Edit = () => {
@@ -10,6 +11,11 @@ const Edit = () => {
     const { id } = useParams();
 
     const diaryList = useContext(DiaryStateContext);
+
+    useEffect(() => {
+        const titleElement = document.getElementsByTagName("title")[0];
+        titleElement.innerHTML = `Emotion Diary - ${id}th diary edit`;
+    }, []);
 
     useEffect(() => {
         if(diaryList.length >= 1){
@@ -29,7 +35,11 @@ const Edit = () => {
 
     return (
         <div className="Edit">
-            {originData && <DiaryEditor isEdit={true} originData={originData}/>}
+            {originData && 
+            <DiaryEditor 
+                isEdit={true} 
+                originData={originData}
+            />}
         </div>
     );
 };

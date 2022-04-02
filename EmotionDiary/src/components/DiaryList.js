@@ -1,5 +1,6 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 import DiaryItem from "./DiaryItem";
 import MyButton from "./MyButton";
 
@@ -14,9 +15,11 @@ const filterOptionList = [
     {value: "bad", name: "bad"}
 ]
 
-const ControlMenu = ({value, onChange, optionList}) => {
+const ControlMenu = React.memo(({value, onChange, optionList}) => {
     return (
-        <select className="ControlMenu" value={value} onChange={(e) => onChange(e.target.value)}>
+        <select className="ControlMenu" 
+            value={value} 
+            onChange={(e) => onChange(e.target.value)}>
             {optionList.map((it, idx) => (
                 <option key={idx} value={it.value}>
                     {it.name}
@@ -24,12 +27,12 @@ const ControlMenu = ({value, onChange, optionList}) => {
             ))}
         </select>
     );
-};
+});
 
 const DiaryList = ({diaryList}) => {
     const navigate = useNavigate();
 
-    const [sortType, setSortType] = useState('lastest');
+    const [sortType, setSortType] = useState('latest');
     const [filter, setFilter] = useState('all');
 
     const getProcessedDiaryList = () => {
@@ -55,7 +58,8 @@ const DiaryList = ({diaryList}) => {
         const copyList = JSON.parse(JSON.stringify(diaryList));
 
         const filteredList = 
-            filter === "all" ? copyList : copyList.filter((it) => filterCallBack(it));
+            filter === "all" ?
+                copyList : copyList.filter((it) => filterCallBack(it));
         const sortedList = filteredList.sort(compare);
         return sortedList;
     };

@@ -1,9 +1,8 @@
 import { useContext, useEffect, useState } from "react";
+import { DiaryStateContext } from "../App";
 
 import MyHeader from '../components/MyHeader';
 import MyButton from '../components/MyButton';
-import { DiaryStateContext } from "../App";
-
 import DiaryList from "../components/DiaryList";
 
 const Home = () => {
@@ -14,15 +13,21 @@ const Home = () => {
     const headText = `${curDate.getFullYear()}. ${curDate.getMonth() + 1}`;
 
     useEffect(() => {
+        const titleElement = document.getElementsByTagName("title")[0];
+        titleElement.innerHTML = `Emotion Diary`;
+    }, []);
+
+    useEffect(() => {
         const firstDay = new Date(
             curDate.getFullYear(), curDate.getMonth(), 1
         ).getTime();
 
         const lastDay = new Date(
-            curDate.getFullYear(), curDate.getMonth() + 1, 1
+            curDate.getFullYear(), curDate.getMonth() + 1, 0, 23, 59, 59
         ).getTime();
 
-        setData(diaryList.filter((it) => firstDay <= it.date && it.date <= lastDay));
+        setData(diaryList.filter((it) => 
+            firstDay <= it.date && it.date <= lastDay));
     }, [diaryList, curDate]);
 
     const increaseMonth = () => {
@@ -30,6 +35,7 @@ const Home = () => {
             new Date(curDate.getFullYear(), curDate.getMonth() + 1)
         );
     };
+
     const decreaseMonth = () => {
         setCurDate(
             new Date(curDate.getFullYear(), curDate.getMonth() - 1)
@@ -40,8 +46,17 @@ const Home = () => {
         <div>
             <MyHeader 
                 headText={headText}
-                leftChild={<MyButton text={"<"} onClick={decreaseMonth} />}
-                rightChild={<MyButton text={">"} onClick={increaseMonth} />}
+                leftChild={
+                    <MyButton 
+                        text={"<"} 
+                        onClick={decreaseMonth} 
+                    />
+                }
+                rightChild={
+                    <MyButton text={">"} 
+                    onClick={increaseMonth} 
+                    />
+                }
             />
             <DiaryList diaryList={data}/>
         </div>

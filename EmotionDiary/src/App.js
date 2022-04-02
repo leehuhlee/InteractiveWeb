@@ -1,76 +1,53 @@
-import './App.css';
+import React, { useEffect, useReducer, useRef } from 'react';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 
+import './App.css';
 import Home from './pages/Home';
 import New from './pages/New';
 import Edit from './pages/Edit';
 import Diary from './pages/Diary';
-import React, { useContext, useReducer, useRef } from 'react';
 
 const reducer = (state, action) => {
   let newState = [];
   switch (action.type){
-    case 'INIT': {
+    case 'INIT': 
       return action.data;
-    };
-    case 'CREATE': {
+    case 'CREATE':
       newState = [action.data, ...state];
       break;
-    };
-    case 'REMOVE': {
+    case 'REMOVE':
       newState = state.filter((it) => 
         it.id !== action.targetId);
       break;
-    }
-    case 'EDIT': {
+    case 'EDIT': 
       newState = state.map((it) => 
         it.id === action.data.id ? action.data : it);
       break;
-    }
     default:
       return state;
   };
+  localStorage.setItem("diary", JSON.stringify(newState));
   return newState;
 };
 
 export const DiaryStateContext = React.createContext();
 export const DiaryDispatchContext = React.createContext();
 
-const dummyData = [
-  {
-    id: 1,
-    emotion: 1,
-    content: "First Diary",
-    date: 1648715547522
-  },
-  {
-    id: 2,
-    emotion: 2,
-    content: "Second Diary",
-    date: 1648715547523
-  },
-  {
-    id: 3,
-    emotion: 3,
-    content: "Third Diary",
-    date: 1648715547524
-  },
-  {
-    id: 4,
-    emotion: 4,
-    content: "Fourth Diary",
-    date: 1648715547525
-  },
-  {
-    id: 5,
-    emotion: 5,
-    content: "Fifth Diary",
-    date: 1648715547526
-  }
-];
-
 function App() {
-  const [data, dispatch] = useReducer(reducer, dummyData);
+  const [data, dispatch] = useReducer(reducer, []);
+
+  useEffect(() => {
+    const localData = localStorage.getItem("diary");
+    if(localData){
+      const diaryList = JSON.parse(localData)
+        .sort((a, b) => parseInt(b.id) - parseInt(a.id));
+
+      if(diaryList.length >= 1){
+        dataId.current = parseInt(diaryList[0].id + 1);
+        dispatch({type: "INIT", data: diaryList});
+      }      
+    }
+  }, []);
 
   const dataId = useRef(0);
 

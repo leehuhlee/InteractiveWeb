@@ -14,6 +14,11 @@ const Diary = () => {
     const [data, setData] = useState();
 
     useEffect(() => {
+        const titleElement = document.getElementsByTagName("title")[0];
+        titleElement.innerHTML = `Emotion Diary - ${id}th diary`;
+    }, []);
+
+    useEffect(() => {
         if(diaryList.length >= 1){
             const targetDiary = diaryList.find(
                 (it) => parseInt(it.id) === parseInt(id)
@@ -59,7 +64,8 @@ const Diary = () => {
                 <article>
                     <section>
                         <h4>Today's emotion</h4>
-                        <div className={["diary_img_wrapper", `diary_img_wrapper_${data.emotion}`].join(" ")}>
+                        <div className={["diary_img_wrapper", 
+                            `diary_img_wrapper_${data.emotion}`].join(" ")}>
                             <img src={curEmotionData.emotion_img} />
                             <div className="emotion_descript">
                                 {curEmotionData.emotion_descript}
